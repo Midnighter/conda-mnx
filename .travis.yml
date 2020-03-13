@@ -25,16 +25,16 @@ before_install:
 - docker pull midnighter/conda-base:3.8-latest
 
 install:
-- "docker build --tag ${IMAGE} --tag ${LATEST} ."
+- docker build --tag "${IMAGE}" --tag "${LATEST}" .
 
 script:
-- "docker run --tty ${LATEST} mnx-sdk --help"
-- "docker run --tty ${LATEST} mnx-assets --help"
-- "docker run --tty ${LATEST} mnx-post --help"
+- docker run --tty "${LATEST}" mnx-sdk --help
+- docker run --tty "${LATEST}" mnx-assets --help
+- docker run --tty "${LATEST}" mnx-post --help
 
 after_success:
-- "docker push ${IMAGE}"
-- "docker push ${LATEST}"
+- docker push "${IMAGE}"
+- docker push "${LATEST}"
 
 notifications:
   email:
